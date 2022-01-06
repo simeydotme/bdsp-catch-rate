@@ -1,0 +1,97 @@
+.autopoke {
+  --height: 50px;
+  --inputColor: white;
+  --background: #24272f;
+  --listBackground: var(--background);
+  --border: 1px solid transparent;
+  --borderHoverColor: rgba(0, 0, 0, 0.4);
+  --borderFocusColor: rgba(255, 255, 255, 0.4);
+
+  --itemHoverBG: rgba(0, 0, 0, 0.1);
+  --itemIsActiveBG: rgba(0, 0, 0, 0.4);
+  --itemPadding: 0 10px 0 5px;
+
+  --listMaxHeight: 400px;
+  --virtualListHeight: 400px;
+
+  transition: all 0.3s ease;
+}
+
+.autopoke,
+.autopoke > input {
+  font-family: pkmn2, sans-serif;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  width: auto;
+  display: block;
+  box-sizing: content-box;
+  flex: 1 1 auto;
+  position: relative;
+  background: #8a909f30;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.autopoke > input {
+  background: transparent;
+  color: white;
+  padding: 5px;
+  width: calc(100% - 32px) !important;
+}
+
+.autopoke .listContainer {
+  text-align: left;
+}
+
+.autopoke .selectedItem {
+  overflow: hidden;
+}
+
+.autopoke .selection,
+.autopoke .item {
+  display: flex;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.autopoke .selection img,
+.autopoke .item img {
+  position: relative;
+  top: -5px;
+  left: 0;
+  transform: scaleX(-1);
+  margin-right: 5px;
+}
+
+.autopoke.focused input:focus + .selectedItem {
+  opacity: 0.4;
+}
+
+.autopoke::after {
+  border: 2px solid transparent;
+  border-radius: 1px;
+  border-right: 0;
+  border-top: 0;
+  content: " ";
+  display: block;
+  height: 0.5em;
+  width: 0.5em;
+  margin-top: -0.5em;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-transform-origin: center;
+  transform-origin: center;
+  border-color: var(--inputColor);
+  right: 1em;
+  z-index: 4;
+  opacity: 0.33;
+  transition: all 0.5s ease;
+}
+
+.autopoke:hover::after {
+  opacity: 1;
+}
