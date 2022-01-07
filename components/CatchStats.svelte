@@ -1,19 +1,21 @@
 <script>
 
     import { rates } from "../stores/rates.js";
-    import pokeballs from "../lib/pokeball-data.js";
 
     export let ball = {};
     export let pokemon = {};
+    export let health = 50;
 
-    $: isOpen = !!ball.name && !!pokemon.name;
+    $: rateArray = $rates.filter((v) => v.type === ball.type);
+    $: rate = rateArray.length ? rateArray.at(0) : {};
+    $: isOpen = !!ball.name && !!pokemon.name && !!rate;
 </script>
 
 
 
 <footer class:isOpen on:click={()=>{isOpen = !isOpen}}>
     <h1>
-        <span>{ball.success}%</span> chance to capture <span>{pokemon.name}</span> @ <span>{50}%</span> health!
+        <span>{rate.success_percent}%</span> chance to capture <span>{pokemon.name}</span> @ <span>{health}%</span> health!
     </h1>
 </footer>
 

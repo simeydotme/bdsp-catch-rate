@@ -7,7 +7,7 @@
 
   let canvas;
   let myChart;
-  $: data = [...ballRate.wobbles, ballRate.success];
+  $: data = [...ballRate.wobbles_percent, ballRate.success_percent];
 
   let config = {
     type: "doughnut",
