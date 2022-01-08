@@ -1,6 +1,6 @@
 <script>
-  import Ball from "./partials/Ball.svelte";
-  import pokeballs from "../lib/pokeball-data.js";
+  import Ball from "p/Ball.svelte";
+  import pokeballs from "l/pokeball-data.js";
 
   export let ball = pokeballs[0];
   // pokeballs.sort((a, b) => {
@@ -44,9 +44,9 @@
     top: 0px;
   }
   label.selected {
-    /* background: rgba(255,255,255,0.05); */
-    /* box-shadow: inset 0 -5px 2px -4px rgba(255, 255, 255, 0.4),
-            inset 0 -20px 12px -12px rgba(255, 255, 255, 0.25); */
+    background: rgba(255,255,255,0.05);
+    box-shadow: inset 0 -5px 2px -4px rgba(255, 255, 255, 0.4),
+            inset 0 -20px 12px -12px rgba(255, 255, 255, 0.25);
   }
   svg {
     fill: white;

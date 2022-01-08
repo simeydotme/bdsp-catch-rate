@@ -1,7 +1,7 @@
 import { writable, derived } from "svelte/store";
-import { selectedMon } from "./pokemon.js";
-import { health, level, player, status } from "./data.js";
-import pokeballs from "../lib/pokeball-data.js";
+import { selectedMon } from "s/pokemon.js";
+import { health, lvl, status } from "s/data.js";
+import pokeballs from "l/pokeball-data.js";
 
 const BASE = 4096;
 const PROB = 65536;
@@ -80,12 +80,12 @@ const shakes = (chance) => {
 };
 
 const rates = derived(
-  [selectedMon, health, level, player, status],
-  ([$pokemon, $hp, $lvl, $mylvl, $status]) => {
+  [selectedMon, health, lvl, status],
+  ([$pokemon, $hp, $lvl, $status]) => {
 
     const mod = {};
-    mod.difficulty = difficulty($mylvl, $lvl);
-    mod.low_level = level_check($lvl);
+    mod.difficulty = difficulty($lvl.us, $lvl.them);
+    mod.low_level = level_check($lvl.them);
     mod.status = $status;
     mod.grass = 1;
 

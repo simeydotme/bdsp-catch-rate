@@ -3,8 +3,10 @@
 
 import livereload from "rollup-plugin-livereload";
 import svelte from "rollup-plugin-svelte";
+// import copy from "rollup-plugin-copy";
 import resolve from "rollup-plugin-node-resolve";
 import commonjs from "rollup-plugin-commonjs";
+import alias from "@rollup/plugin-alias";
 import json from "@rollup/plugin-json";
 import yaml from "@rollup/plugin-yaml";
 import { terser } from "rollup-plugin-terser";
@@ -17,7 +19,7 @@ export default {
     sourcemap: true,
     format: "iife",
     name: "app",
-    file: "public/bundle.js",
+    file: "public/build/bundle.js",
   },
   plugins: [
     svelte({
@@ -26,11 +28,20 @@ export default {
       // we'll extract any component CSS out into
       // a separate file — better for performance
       css: (css) => {
-        css.write("public/bundle.css");
+        css.write("bundle.css");
       },
     }),
     json(),
     yaml(),
+    alias({
+      entries: [
+        { find: "c", replacement: "App/components" },
+        { find: "p", replacement: "App/components/partials" },
+        { find: "s", replacement: "stores" },
+        { find: "l", replacement: "lib" },
+        { find: "pub", replacement: "public" },
+      ],
+    }),
     // If you have external dependencies installed from
     // npm, you'll most likely need these plugins. In
     // some cases you'll need additional configuration —
@@ -38,6 +49,19 @@ export default {
     // https://github.com/rollup/rollup-plugin-commonjs
     resolve(),
     commonjs(),
+
+    // copy({
+    //   targets: [
+    //     {
+    //       src: "node_modules/pokemon-sprites/sprites/pokemon/versions/generation-v/black-white/animated/*.gif",
+    //       dest: "public/sprites/animated",
+    //     },
+    //     {
+    //       src: "node_modules/pokemon-sprites/sprites/pokemon/versions/generation-viii/icons/*.png",
+    //       dest: "public/sprites/icons",
+    //     },
+    //   ],
+    // }),
 
     // Watch the `public` directory and refresh the
     // browser on changes when not in production

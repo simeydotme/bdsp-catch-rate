@@ -12,7 +12,7 @@
   position: relative;
   width: 41px;
   height: 41px;
-  background-image: url(../pokeballs.png);
+  background-image: url(../img/pokeballs.png);
   background-position: 0 0;
   transform-origin: center bottom;
 }

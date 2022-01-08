@@ -1,13 +1,14 @@
 <script>
-  import Ball from "./partials/Ball.svelte";
-  import Doughnut from "./partials/Doughnut.svelte";
-  import Arrow from "./partials/Arrow.svelte";
-  import pokeballs from "../lib/pokeball-data.js";
-  import { rates } from "../stores/rates.js";
-  export let ball = pokeballs[0];
+  import Ball from "p/Ball.svelte";
+  import Doughnut from "p/Doughnut.svelte";
+  import Arrow from "p/Arrow.svelte";
+  import { rates } from "s/rates.js";
+
+  export let ball = {};
+
 </script>
 
-  <section class="balls">
+  <section class="balls" class:selected={!!ball.type}>
     {#each $rates as ballRate}
       <label class:selected={ball === ballRate}>
         <Ball ball="{ballRate}" anim={ball === ballRate ? 'open' : 'side'} />
@@ -24,21 +25,17 @@
 
 
 <style>
-  .chart {
-    width: 100px;
-    height: 100px;
-  }
   .balls {
+    --size: 90px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     place-items: center;
   }
   .balls label {
     position: relative;
-    border-radius: 100px;
+    border-radius: var(--size);
     display: grid;
     box-shadow: inset 0 -12px 6px -10px transparent;
-    transition: all 1s ease;
   }
   .balls input {
     opacity: 0;
@@ -52,5 +49,17 @@
   .balls > :global(label .chart) {
     grid-column: 1;
     grid-row: 1;
+    transition: opacity 0.3s ease, filter 1s ease;
+  }
+  .chart {
+    width: var(--size);
+    height: var(--size);
+  }
+  .balls > label:not(.selected) :global(.ball) {
+    opacity: 0.9;
+  }
+  .balls > label:not(.selected) :global(.chart) {
+    opacity: 0.5;
+    filter: saturate(0.5);
   }
 </style>

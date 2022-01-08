@@ -1,0 +1,35 @@
+
+:root {
+    --range-slider: rgba(0,0,0,0.5);
+    
+    --range-handle: white;
+    --range-handle-inactive: rgba(255,255,255,0.75);
+    --range-handle-focus: #7effba;
+    --handle-img: url(../img/overworld-ash.png);
+  }
+  
+  .level-slider .rangeSlider .rangeHandle .rangeFloat, 
+  .level-slider .rangeSlider .rangeHandle.active .rangeFloat , 
+  .level-slider .rangeSlider .rangeHandle:hover .rangeFloat {
+    bottom: 5px;
+    top: auto;
+    transform: translate(-50%, 100%);
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+    pointer-events: all;
+    background-color: transparent;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+  }
+  .level-slider .rangeSlider .rangeHandle .rangeFloat {
+    background-image: var(--handle-img);
+  }
+
+  .level-slider .rangeSlider .rangeHandle:nth-child(1) .rangeFloat {
+    width: 64px;
+    height: 64px;
+    background-image: var(--handle-img-poke);
+    background-position: bottom center;
+    transform: translate(-50%, 50%);
+  }

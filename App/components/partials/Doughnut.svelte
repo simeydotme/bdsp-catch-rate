@@ -24,7 +24,7 @@
     },
     options: {
       layout: {
-        padding: 10
+        padding: 5
       },
       elements: {
         arc: {

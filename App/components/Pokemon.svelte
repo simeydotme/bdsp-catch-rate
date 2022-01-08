@@ -1,9 +1,9 @@
 <script>
-  import Type from "./partials/Type.svelte";
-  import Difficulty from "./partials/Difficulty.svelte";
+  import Type from "p/Type.svelte";
+  import Difficulty from "p/Difficulty.svelte";
 
   import Select from "svelte-select";
-  import pokemons from "../lib/pokemon-data.js";
+  import pokemons from "l/pokemon-data.js";
 
   export let pokemon = pokemons[150];
   export let listOpen = true;

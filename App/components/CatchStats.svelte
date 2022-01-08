@@ -1,6 +1,6 @@
 <script>
 
-    import { rates } from "../stores/rates.js";
+    import { rates } from "s/rates.js";
 
     export let ball = {};
     export let pokemon = {};
