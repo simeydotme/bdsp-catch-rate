@@ -6,6 +6,7 @@
   import Pokemon from "c/Pokemon.svelte";
   import Pokeballs from "c/Pokeballs.svelte";
   import Levels from "c/Levels.svelte";
+  import Health from "c/Health.svelte";
   import CatchStats from "c/CatchStats.svelte";
 
 </script>
@@ -13,6 +14,7 @@
 <main>
   <Pokemon bind:pokemon={$selectedMon} />
   <Levels />
+  <Health />
   <Pokeballs bind:ball={$selectedBall} />
 
   <CatchStats ball={$selectedBall} pokemon={$selectedMon} health={$health} />
@@ -21,6 +23,6 @@
 <style>
   main {
     max-width: 400px;
-    margin: 0 auto 100px;
+    margin: 0 auto 200px;
   }
 </style>

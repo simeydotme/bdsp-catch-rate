@@ -26,15 +26,20 @@ const clamp = (n, min = 0, max = 100) => {
   return Math.max(min, Math.min(n, max));
 };
 
-const ball_rate = (ball, lvl) => {
-  let rate = 1;
+const ball_rate = (ball, pkmn, lvl) => {
+  let rate = ball.rate;
   switch (ball.type) {
     case "master":
       rate = 9999;
       break;
     case "nest":
-      if (lvl < 30) {
-        rate = (41 - lvl) / 10;
+      if (lvl.them < 30) {
+        rate = (41 - lvl.them) / 10;
+      }
+      break;
+    case "net":
+      if ( ["bug","water"].some((e) => [pkmn.type1,pkmn.type2].includes(e)) ) {
+        rate = 3.5;
       }
       break;
   }
@@ -90,7 +95,7 @@ const rates = derived(
     mod.grass = 1;
 
     return pokeballs.map((ball) => {
-      mod.ball = ball_rate(ball, $lvl);
+      mod.ball = ball_rate(ball, $pokemon, $lvl);
       const catch_chance = catch_check($pokemon, mod, $hp);
       const rough_chance = (catch_chance / 255) * 100;
       const shake_prob = shake_check(catch_chance);

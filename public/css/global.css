@@ -39,7 +39,7 @@ body {
 :root {
   --normal: rgb(190, 183, 179);
   --electric: rgb(252, 230, 35);
-  --fire: rgb(226, 65, 37);
+  --fire: rgb(226, 75, 37);
   --water: rgb(37, 150, 226);
   --grass: rgb(81, 226, 37);
   --bug: rgb(163, 204, 66);
@@ -59,21 +59,21 @@ body {
 
 .type {
   font-family: pkmn, sans-serif;
-  font-size: 14px;
+  font-size: 13px;
   line-height: 1;
   letter-spacing: 0.5px;
   text-transform: uppercase;
   display: inline-block;
-  padding: 2px 6px 2px;
+  padding: 2px 5px 1px;
   border-radius: 3px;
 }
 
 .type {
   background-color: rgb(94, 99, 100);
   text-shadow: 0 1px 2px rgba(0, 0, 0, 1), 0 1px 0 rgba(0, 0, 0, 0.5);
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.5),
-    inset 0 -5px 5px rgba(0, 0, 0, 0.25),
-    inset 0 5px 5px rgba(255, 255, 255, 0.25);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3), 
+    inset 0 -5px 5px rgba(0, 0, 0, 0.2), 
+    inset 0 5px 5px rgba(255, 255, 255, 0.2)
 }
 
 .type.normal {

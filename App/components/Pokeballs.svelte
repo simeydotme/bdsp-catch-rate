@@ -6,19 +6,25 @@
 
   export let ball = {};
 
+  let isSelected = (b,r) => {
+    return b.type === r.type;
+  }
+
 </script>
 
   <section class="balls" class:selected={!!ball.type}>
-    {#each $rates as ballRate}
-      <label class:selected={ball === ballRate}>
-        <Ball ball="{ballRate}" anim={ball === ballRate ? 'open' : 'side'} />
+    {#each $rates as ballRate, i (ballRate.type)}
+      <label class:selected={isSelected(ball,ballRate)} title="{ballRate.name + ", " + ballRate.flavour}">
+        <Ball ball="{ballRate}" anim={isSelected(ball,ballRate) ? 'open' : 'side'} />
         <input type="radio" name="selectedBall" bind:group={ball} value={ballRate} />
-        {#if ball === ballRate}
+        {#if isSelected(ball,ballRate)}
           <Arrow />
         {/if}
         <div class="chart">
-          <Doughnut {ballRate} />
+          <Doughnut {ballRate} index={i} />
         </div>
+        <!-- <p class="rate">~{Math.round(ballRate.success_percent)}%</p> -->
+        <p class="name">{ballRate.name}</p>
       </label>
     {/each}
   </section>
@@ -42,7 +48,7 @@
     position: absolute;
   }
   .balls :global(.ball) {
-    top: 5px;
+    top: 15px;
     place-self: center;
   }
   .balls > :global(label .ball),
@@ -56,10 +62,21 @@
     height: var(--size);
   }
   .balls > label:not(.selected) :global(.ball) {
-    opacity: 0.9;
+    opacity: 1;
   }
   .balls > label:not(.selected) :global(.chart) {
     opacity: 0.5;
     filter: saturate(0.5);
+  }
+  .balls label .name,
+  .balls label .rate {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1.5em;
+    text-align: center;
+  }
+  .balls label .rate {
+    bottom: 40px;
   }
 </style>

@@ -5,22 +5,21 @@
   import Select from "svelte-select";
   import pokemons from "l/pokemon-data.js";
 
-  export let pokemon = pokemons[150];
+  export let pokemon = {};
   export let listOpen = true;
 </script>
 
-
 <section class="pokemon">
   <div class="selector" class:listOpen>
-    <Select 
+    <Select
       items={pokemons}
-      bind:value="{pokemon}"
+      bind:value={pokemon}
       optionIdentifier="value"
       getSelectionLabel={(item) => item.name}
       getOptionLabel={(item) => item.label}
       containerClasses="autopoke"
       noOptionsMessage="This Pokemon may be in another region."
-      isClearable="{false}"
+      isClearable={false}
       isVirtualList
       bind:listOpen
     />
@@ -29,16 +28,18 @@
   <Difficulty difficulty={pokemon.catch_rate} />
 
   <div class="sprite">
-    <img class="sprite__image" src="{pokemon.sprite}" 
-      alt="animated image of the pokemon: {pokemon.name}" />
+    <div class="number">
+      #{pokemon.number}
+    </div>
+    <img
+      class="sprite__image"
+      src={pokemon.sprite}
+      alt="animated image of the pokemon: {pokemon.name}"
+    />
   </div>
 
   <div class="data">
     <table>
-      <tr>
-        <th>Number:</th>
-        <td>#{pokemon.number}</td>
-      </tr>
       <tr>
         <th>Species:</th>
         <td>{pokemon.species} Pokemon</td>
@@ -46,8 +47,8 @@
       <tr>
         <th>Type:</th>
         <td>
-          <Type type="{pokemon.type1}" />
-          <Type type="{pokemon.type2}" />
+          <Type type={pokemon.type1} />
+          <Type type={pokemon.type2} />
         </td>
       </tr>
       <tr>
@@ -55,17 +56,13 @@
         <td>{pokemon.catch_rate} </td>
       </tr>
     </table>
-    
   </div>
-
-  
 </section>
-
 
 <style>
   .pokemon {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     place-content: center;
     background: var(--bg);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15),
@@ -107,13 +104,20 @@
 
   .sprite {
     grid-row: 3/5;
-    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
   }
   .sprite__image {
     transform: scaleX(-1);
+  }
+
+  .number {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    font-size: 16px;
   }
 
   .data {

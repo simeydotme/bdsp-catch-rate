@@ -8,6 +8,9 @@
   };
 
   const image = (n) => {
+    if ( typeof n === "undefined" ) {
+      return "";
+    }
     let number = n.toString().padStart(3, "0");
     switch (n) {
       case 201:
@@ -20,7 +23,6 @@
 
   $: pokeImg = image($selectedMon.number);
 
-  const handle = () => "";
 </script>
 
 <section class="level-slider" style="--handle-img-poke: {pokeImg};">
@@ -29,8 +31,6 @@
     min={1}
     max={100}
     bind:values={$levels}
-    float
-    handleFormatter={handle}
     spingValues={{ stiffness: 1, damping: 1 }}
   />
   <p class="level level--us">Our<span>Lv{$lvl.us}</span></p>
