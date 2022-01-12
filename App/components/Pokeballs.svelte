@@ -10,22 +10,36 @@
     return b.type === r.type;
   }
 
+  const scrollTo = (e) => {
+    const el = e.target.parentElement;
+    el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
 </script>
 
   <section class="balls" class:selected={!!ball.type}>
     {#each $rates as ballRate, i (ballRate.type)}
-      <label class:selected={isSelected(ball,ballRate)} title="{ballRate.name + ", " + ballRate.flavour}">
+
+      <label 
+        class:selected={isSelected(ball,ballRate)}
+        title="{ballRate.flavour}">
+
         <Ball ball="{ballRate}" anim={isSelected(ball,ballRate) ? 'open' : 'side'} />
-        <input type="radio" name="selectedBall" bind:group={ball} value={ballRate} />
+        <input type="radio" name="selectedBall" bind:group={ball} value={ballRate} on:change={scrollTo} />
+        
         {#if isSelected(ball,ballRate)}
           <Arrow />
         {/if}
+
         <div class="chart">
           <Doughnut {ballRate} index={i} />
         </div>
+
         <!-- <p class="rate">~{Math.round(ballRate.success_percent)}%</p> -->
         <p class="name">{ballRate.name}</p>
+
       </label>
+
     {/each}
   </section>
 

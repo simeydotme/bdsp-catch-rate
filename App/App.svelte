@@ -1,5 +1,5 @@
 <script>
-  import { selectedMon } from "s/pokemon.js";
+  import { allMonsters, selectedMon, defaultMonster } from "s/pokemon.js";
   import { selectedBall, health } from "s/data.js";
 
   // import tooltip from "./lib/tooltips.js";
@@ -9,20 +9,42 @@
   import Health from "c/Health.svelte";
   import CatchStats from "c/CatchStats.svelte";
 
+  $: {
+    if ( !$allMonsters.loading && !$allMonsters.error ) {
+      if ( !$selectedMon.name ) {
+        $selectedMon = { ...$allMonsters.list[ defaultMonster ] };
+      }
+    }
+  }
+
 </script>
 
 <main>
-  <Pokemon bind:pokemon={$selectedMon} />
-  <Levels />
-  <Health />
-  <Pokeballs bind:ball={$selectedBall} />
 
-  <CatchStats ball={$selectedBall} pokemon={$selectedMon} health={$health} />
+  {#if $allMonsters.loading}
+
+    Loading...
+
+  {:else if $allMonsters.error}
+
+    Error... {$allMonsters.message}
+
+  {:else}
+
+    <Pokemon list={$allMonsters.list} bind:pokemon={$selectedMon} {defaultMonster} />
+    <Levels />
+    <Health />
+    <Pokeballs bind:ball={$selectedBall} />
+
+    <CatchStats ball={$selectedBall} pokemon={$selectedMon} health={$health} />
+
+  {/if}
+
 </main>
 
 <style>
   main {
     max-width: 400px;
-    margin: 0 auto 200px;
+    margin: 0 auto 20px;
   }
 </style>

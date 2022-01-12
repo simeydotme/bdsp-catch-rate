@@ -21,7 +21,7 @@
     return `url(${path(number + "_")}), url(${path(number + "_m-")})`;
   };
 
-  $: pokeImg = image($selectedMon.number);
+  $: pokeImg = image($selectedMon.number || 35);
 
 </script>
 
@@ -40,6 +40,8 @@
   .level-slider {
     display: grid;
     grid-template-columns: 40px 1fr 40px;
+    position: relative;
+    z-index: 3;
   }
 
   .level-slider .level span {

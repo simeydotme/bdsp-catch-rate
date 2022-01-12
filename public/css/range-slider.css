@@ -35,21 +35,44 @@
   transform: translate(-50%, 50%);
 }
 
-.health-slider .rangeHandle {
-  opacity: 0;
+
+/* health slider */
+
+.health-slider .rangeSlider .rangeHandle .rangeFloat,
+.health-slider .rangeSlider .rangeHandle.active .rangeFloat {
+
+  transform: translate(-50%,-50%);
+  top: 50%;
+  font-size: 14px;
+  border-radius: 20px;
+  padding: 1px 7px 2px 9px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.health-slider .rangeSlider .rangeHandle .rangeNub,
+.health-slider .rangeSlider .rangeHandle::before,
+.health-slider .rangeSlider .rangeSlider .rangeHandle.hoverable:hover .rangeFloat {
+  opacity: 0!important;
 }
 
 .health-slider {
   --range-range: #25e20a;
   --range-range-inactive: var(--range-range);
+  --range-float: var(--range-range);
+  --range-float-text: var(--bg);
 }
 
 .health-slider.medium {
   --range-range: orange;
   --range-range-inactive: var(--range-range);
+  --range-float: var(--range-range);
+  --range-float-text: var(--bg);
 }
 
 .health-slider.low {
   --range-range: red;
   --range-range-inactive: var(--range-range);
+  --range-float: var(--range-range);
+  --range-float-text: white;
 }

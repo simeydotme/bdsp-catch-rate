@@ -1,28 +1,47 @@
 <script>
+  import Ball from "p/Ball.svelte";
   import Type from "p/Type.svelte";
   import Difficulty from "p/Difficulty.svelte";
 
   import Select from "svelte-select";
-  import pokemons from "l/pokemon-data.js";
+  // import Svelecte from "Svelecte";
 
-  export let pokemon = {};
+  export let defaultMonster = 24;
+  export let list = [];
+  export let pokemon = { ...list[ defaultMonster ] };
   export let listOpen = true;
+
+  let selected = { ...pokemon };
+  let spriteLoading = true;
+
+  $: pokemon = (selected && selected.name) ? selected : { ...list[ defaultMonster ] };
+
+  $: pokemon.sprite && ( async () => {
+    spriteLoading = true;
+    const img = await fetch( pokemon.sprite );
+    const res = await img;
+    spriteLoading = false;
+  })();
+
 </script>
 
 <section class="pokemon">
   <div class="selector" class:listOpen>
+
     <Select
-      items={pokemons}
-      bind:value={pokemon}
+      items={ list }
+      bind:value={ selected }
       optionIdentifier="value"
       getSelectionLabel={(item) => item.name}
-      getOptionLabel={(item) => item.label}
+      getOptionLabel={(item) => item.label }
       containerClasses="autopoke"
       noOptionsMessage="This Pokemon may be in another region."
-      isClearable={false}
+      listPlacement="bottom"
+      isClearable={ false }
       isVirtualList
       bind:listOpen
     />
+
   </div>
 
   <Difficulty difficulty={pokemon.catch_rate} />
@@ -31,11 +50,16 @@
     <div class="number">
       #{pokemon.number}
     </div>
-    <img
-      class="sprite__image"
-      src={pokemon.sprite}
-      alt="animated image of the pokemon: {pokemon.name}"
-    />
+    {#if spriteLoading}
+      <Ball ball="poke" anim="rock" />
+    {:else}
+      <img
+        class="sprite__image"
+        src={ pokemon.sprite }
+        loading="lazy"
+        alt="animated image of the pokemon: {pokemon.name}"
+      />
+    {/if}
   </div>
 
   <div class="data">
@@ -108,6 +132,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    min-height: 90px;
   }
   .sprite__image {
     transform: scaleX(-1);

@@ -26,7 +26,7 @@ const clamp = (n, min = 0, max = 100) => {
   return Math.max(min, Math.min(n, max));
 };
 
-const ball_rate = (ball, pkmn, lvl) => {
+const ball_rate = (pkmn, ball, lvl) => {
   let rate = ball.rate;
   switch (ball.type) {
     case "master":
@@ -60,10 +60,10 @@ const level_check = (lvl) => {
   return 1;
 };
 
-const catch_check = (pokemon, mod, hp = 100) => {
+const catch_check = (pkmn, mod, hp = 100) => {
   const MAX = 100;
   return (
-    (((3 * MAX - 2 * hp) * mod.grass * pokemon.catch_rate * mod.ball) /
+    (((3 * MAX - 2 * hp) * mod.grass * pkmn.catch_rate * mod.ball) /
       (3 * MAX)) *
     mod.low_level *
     mod.status *
@@ -86,7 +86,7 @@ const shakes = (chance) => {
 
 const rates = derived(
   [selectedMon, health, lvl, status],
-  ([$pokemon, $hp, $lvl, $status]) => {
+  ([$pkmn, $hp, $lvl, $status]) => {
 
     const mod = {};
     mod.difficulty = difficulty($lvl.us, $lvl.them);
@@ -95,8 +95,8 @@ const rates = derived(
     mod.grass = 1;
 
     return pokeballs.map((ball) => {
-      mod.ball = ball_rate(ball, $pokemon, $lvl);
-      const catch_chance = catch_check($pokemon, mod, $hp);
+      mod.ball = ball_rate($pkmn, ball, $lvl);
+      const catch_chance = catch_check($pkmn, mod, $hp);
       const rough_chance = (catch_chance / 255) * 100;
       const shake_prob = shake_check(catch_chance);
       const shake_chance = shake_prob / PROB;

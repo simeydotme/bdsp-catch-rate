@@ -1185,6 +1185,13 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+svelecte@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/svelecte/-/svelecte-3.5.2.tgz#b0148f076c2ad9cc3f58a5593e27b044f9fd7497"
+  integrity sha512-hOAiwDf5YER6xA2MuBPfeV7MHOgCWgQPNESCXI1Oxz9PiuLeOWxum4L/pQfyH1CF0LIAhCgJZmnQgaqyEWkqdQ==
+  dependencies:
+    svelte-tiny-virtual-list "^1.1.7"
+
 svelte-range-slider-pips@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/svelte-range-slider-pips/-/svelte-range-slider-pips-2.0.0.tgz#12316f9745a1df78394fef89168adabe73bc4979"
@@ -1194,6 +1201,11 @@ svelte-select@4.4.4:
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/svelte-select/-/svelte-select-4.4.4.tgz#c8edcc829fb163d66adec5505507321ad857e6e0"
   integrity sha512-Jfa8NM3AtPb2qDKuOJuVXtTBm4q7wfUnGSQ7uhQLoMop5gzk1lKVOY5nWhUD1jnPnUfw5C6aK0WSnA7PthBSxA==
+
+svelte-tiny-virtual-list@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/svelte-tiny-virtual-list/-/svelte-tiny-virtual-list-1.1.7.tgz#7ba8ee1fc23372512de2aba50d9674972a35c6f7"
+  integrity sha512-8314cmLXOVqIQwSc3NFu8yGU7BdHEJeixrwFirmnMoWl6YNcCq5jVjCKjE3tDNJfUenz1LN5M5YshPt6GcPuww==
 
 svelte@^3.44.3:
   version "3.44.3"
