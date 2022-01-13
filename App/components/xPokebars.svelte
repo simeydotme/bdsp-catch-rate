@@ -1,6 +1,6 @@
 <script>
   import Ball from "p/Ball.svelte";
-  import { rates } from "s/rates.js";
+  import { ballRates as rates } from "s/rates.js";
   export let ball = rates[0];
 
   let catch_percent = "35.19";

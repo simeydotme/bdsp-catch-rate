@@ -1,6 +1,6 @@
 <script>
   import { allMonsters, selectedMon, defaultMonster } from "s/pokemon.js";
-  import { selectedBall, health } from "s/data.js";
+  import { selectedBall, health, lvl } from "s/data.js";
 
   // import tooltip from "./lib/tooltips.js";
   import Pokemon from "c/Pokemon.svelte";
@@ -36,7 +36,7 @@
     <Health />
     <Pokeballs bind:ball={$selectedBall} />
 
-    <CatchStats ball={$selectedBall} pokemon={$selectedMon} health={$health} />
+    <CatchStats ball={$selectedBall} pokemon={$selectedMon} health={$health} lvl={$lvl} />
 
   {/if}
 

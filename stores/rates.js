@@ -1,6 +1,6 @@
 import { writable, derived } from "svelte/store";
 import { selectedMon } from "s/pokemon.js";
-import { health, lvl, status } from "s/data.js";
+import { health, lvl, status, selectedBall } from "s/data.js";
 import pokeballs from "l/pokeball-data.js";
 
 const BASE = 4096;
@@ -27,7 +27,7 @@ const clamp = (n, min = 0, max = 100) => {
 };
 
 const ball_rate = (pkmn, ball, lvl) => {
-  let rate = ball.rate;
+  let rate = ball.rate || 1;
   switch (ball.type) {
     case "master":
       rate = 9999;
@@ -60,7 +60,7 @@ const level_check = (lvl) => {
   return 1;
 };
 
-const catch_check = (pkmn, mod, hp = 100) => {
+const catch_check = (pkmn, mod = { low_level: 1, status: 1, difficulty: 1 }, hp = 100) => {
   const MAX = 100;
   return (
     (((3 * MAX - 2 * hp) * mod.grass * pkmn.catch_rate * mod.ball) /
@@ -84,7 +84,7 @@ const shakes = (chance) => {
   ];
 };
 
-const rates = derived(
+const ballRates = derived(
   [selectedMon, health, lvl, status],
   ([$pkmn, $hp, $lvl, $status]) => {
 
@@ -106,7 +106,7 @@ const rates = derived(
       return {
         ...ball,
         modifiers: { ...mod },
-        rough: rough_chance,
+        rough: clamp(fixed(rough_chance)),
         success: catch_percent,
         success_percent: clamp(fixed(catch_percent * 100)),
         wobbles: shakes_percent.map((v) => clamp(v, 0, 1)),
@@ -116,4 +116,39 @@ const rates = derived(
   }
 );
 
-export { rates };
+const healthRates = derived(
+  [selectedMon, selectedBall, lvl, status],
+  ([$pkmn, $ball, $lvl, $status]) => {
+
+    const mod = {};
+    mod.difficulty = difficulty($lvl.us, $lvl.them);
+    mod.low_level = level_check($lvl.them);
+    mod.status = $status;
+    mod.grass = 1;
+    mod.ball = ball_rate($pkmn, $ball, $lvl);
+
+    return Array
+      .from({ length: 100 })
+      .map(( _, hp ) => {
+
+        const catch_chance = catch_check($pkmn, mod, hp+1);
+        const rough_chance = (catch_chance / 255) * 100;
+        const shake_prob = shake_check(catch_chance);
+        const shake_chance = shake_prob / PROB;
+        const catch_percent = power(shake_chance, 4);
+        const shakes_percent = shakes(shake_chance);
+
+        return {
+          hp: hp + 1,
+          modifiers: { ...mod },
+          rough: clamp(fixed(rough_chance)),
+          success: catch_percent,
+          success_percent: clamp(fixed(catch_percent * 100)),
+          wobbles: shakes_percent.map((v) => clamp(v, 0, 1)),
+          wobbles_percent: shakes_percent.map((v) => clamp(fixed(v * 100))),
+        };
+      });
+  }
+)
+
+export { ballRates, healthRates };

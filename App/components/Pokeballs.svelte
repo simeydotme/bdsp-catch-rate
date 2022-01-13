@@ -2,7 +2,7 @@
   import Ball from "p/Ball.svelte";
   import Doughnut from "p/Doughnut.svelte";
   import Arrow from "p/Arrow.svelte";
-  import { rates } from "s/rates.js";
+  import { ballRates as rates } from "s/rates.js";
 
   export let ball = {};
 
