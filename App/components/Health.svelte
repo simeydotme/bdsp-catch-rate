@@ -28,7 +28,7 @@
   .health-slider {
     display: grid;
     grid-template-columns: 1fr 80px;
-    padding: 10px 20px 10px 10px;
+    padding: 10px 13px 10px 5px;
     position: sticky;
     top: 162px;
     z-index: 2;
@@ -47,6 +47,10 @@
     border-radius: 4px;
     background: rgb(39, 43, 52);
     color: white;
-    padding: 4px 2px;
+    padding: 4px 24px 4px 2px;
+    background-image: url("/img/down.png");
+    background-position: 60px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
   }
 </style>

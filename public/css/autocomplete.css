@@ -58,7 +58,7 @@
 .autopoke .selection img,
 .autopoke .item img {
   position: relative;
-  top: -5px;
+  top: -14px;
   left: 0;
   transform: scaleX(-1);
   margin-right: 5px;

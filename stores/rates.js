@@ -140,6 +140,7 @@ const healthRates = derived(
 
         return {
           hp: hp + 1,
+          lvl: $lvl.them,
           modifiers: { ...mod },
           rough: clamp(fixed(rough_chance)),
           success: catch_percent,

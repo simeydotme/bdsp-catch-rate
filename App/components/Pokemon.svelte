@@ -99,13 +99,6 @@
     z-index: 5;
   }
 
-  @supports (backdrop-filter: blur) {
-    .pokemon {
-      background: #333844da;
-      backdrop-filter: blur(5px);
-    }
-  }
-
   .selector,
   :global(.selector + .difficulty) {
     grid-column: 1/-1;
@@ -117,13 +110,6 @@
     inset: 0;
     padding: 10px;
     z-index: 22;
-  }
-
-  @supports (backdrop-filter: blur) {
-    .selector.listOpen {
-      background: #333844da;
-      backdrop-filter: blur(5px);
-    }
   }
 
   .sprite {

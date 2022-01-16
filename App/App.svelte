@@ -8,6 +8,7 @@
   import Levels from "c/Levels.svelte";
   import Health from "c/Health.svelte";
   import CatchStats from "c/CatchStats.svelte";
+  import Ball from "p/Ball.svelte";
 
   $: {
     if ( !$allMonsters.loading && !$allMonsters.error ) {
@@ -23,7 +24,10 @@
 
   {#if $allMonsters.loading}
 
-    Loading...
+    <div class="loading">
+      <Ball type="master" anim="bounce" />
+      <p>Loading...</p>
+    </div>
 
   {:else if $allMonsters.error}
 
@@ -46,5 +50,19 @@
   main {
     max-width: 400px;
     margin: 0 auto 20px;
+  }
+
+  .loading {
+    display: flex;
+    flex-direction: column;
+    place-items: center;
+    place-content: center;
+    position: fixed;
+    inset: 0;
+  }
+
+  .loading p {
+    font-size: 22px;
+    margin: 20px auto;
   }
 </style>
