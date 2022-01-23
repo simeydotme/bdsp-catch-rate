@@ -21,6 +21,7 @@
     {#each $rates as ballRate, i (ballRate.type)}
 
       <label 
+        class="balls__{ballRate.type}"
         class:selected={isSelected(ball,ballRate)}
         title="{ballRate.flavour}">
 

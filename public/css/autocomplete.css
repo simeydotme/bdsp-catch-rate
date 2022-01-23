@@ -11,8 +11,8 @@
   --itemIsActiveBG: rgba(0, 0, 0, 0.4);
   --itemPadding: 0 10px 0 5px;
 
-  --listMaxHeight: 400px;
-  --virtualListHeight: 400px;
+  --listMaxHeight: 442px;
+  --virtualListHeight: 442px;
 
   transition: all 0.3s ease;
 }

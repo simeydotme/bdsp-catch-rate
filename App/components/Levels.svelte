@@ -31,7 +31,7 @@
     min={1}
     max={100}
     bind:values={$levels}
-    spingValues={{ stiffness: 1, damping: 1 }}
+    springValues={{ stiffness: 1, damping: 1 }}
   />
   <p class="level level--us">Our<span>Lv{$lvl.us}</span></p>
 </section>

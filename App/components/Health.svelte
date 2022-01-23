@@ -13,7 +13,7 @@
     float
     formatter={ (v) => v + "% hp" }
     bind:values={$health}
-    spingValues={{ stiffness: 1, damping: 1 }}
+    springValues={{ stiffness: 1, damping: 1 }}
   />
 
   <select bind:value="{ $status }">

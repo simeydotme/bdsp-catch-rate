@@ -29,6 +29,7 @@ html {
   margin: 0;
   min-height: 100vh;
 }
+
 body {
   position: relative;
 }
@@ -128,4 +129,8 @@ body {
 }
 .type.fairy {
   background-color: var(--fairy);
+}
+
+.txt-pkmn {
+  font-family: pkmn2, sans-serif;
 }
