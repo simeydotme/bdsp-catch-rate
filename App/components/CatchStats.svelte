@@ -99,7 +99,7 @@
     justify-content: space-evenly;
 
     max-width: 460px;
-    margin: 0 auto 20px;
+    margin: 0 auto;
   }
 
   footer :global(h2) {
