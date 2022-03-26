@@ -17,8 +17,9 @@
       focus={hp === hpRate.hp}
     />
   {/each}
-  <span class="hp-percent min">1% health</span>
-  <span class="hp-percent max">100% health</span>
+  <span class="hp-percent min">1% hp</span>
+  <span class="hp-percent half">50% hp</span>
+  <span class="hp-percent max">100% hp</span>
 </div>
 
 <style>
@@ -32,14 +33,21 @@
   .hp-percent {
     position: absolute;
     left: 2px;
-    top: calc( 50% - 6px );
+    bottom: -13px;
     text-align: left;
     font-size: 11px;
+    opacity: 0.4;
   }
 
   .hp-percent.max {
     left: auto;
     right: 2px;
+    text-align: right;
+  }
+
+  .hp-percent.half {
+    left: 50%;
+    transform: translateX(-50%);
     text-align: right;
   }
 </style>

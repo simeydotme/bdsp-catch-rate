@@ -75,7 +75,7 @@
           <Type type={pokemon.type2} />
         </td>
       </tr>
-      <tr>
+      <tr title="Catch Rate is a hidden value all pokemon have which affects their catch-ability calculations">
         <th>Catch Rate:</th>
         <td>{pokemon.catch_rate} </td>
       </tr>

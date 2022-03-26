@@ -10,6 +10,8 @@
   import CatchStats from "c/CatchStats.svelte";
   import Ball from "p/Ball.svelte";
 
+  $: buffer = 200;
+
   $: {
     if ( !$allMonsters.loading && !$allMonsters.error ) {
       if ( !$selectedMon.name ) {
@@ -18,9 +20,20 @@
     }
   }
 
+  $: {
+    console.log($selectedBall)
+    if ( ["repeat","dive","timer"].includes( $selectedBall.type ) ) {
+      buffer = 270;
+    } else if ( ["dusk"].includes( $selectedBall.type ) ) {
+      buffer = 230;
+    } else {
+      buffer = 200;
+    }
+  }
+
 </script>
 
-<main>
+<main style="--footer-height: {buffer}px;">
 
   {#if $allMonsters.loading}
 
@@ -48,7 +61,7 @@
 
 <style>
   main {
-    max-width: 400px;
+    max-width: 460px;
     margin: 0 auto 20px;
   }
 
